@@ -1,6 +1,8 @@
 from ..llms.protocol import LLM
 
-def generate_sql(llm:LLM,query: str) -> str:
+def generate_sql(llm:LLM,schema: str, query: str) -> str:
+    SCHEMA=schema
+    
     SYSTEM_PROMPT = """
     You are a SQL query compiler.
 
@@ -14,6 +16,11 @@ def generate_sql(llm:LLM,query: str) -> str:
     - Output must start directly with SELECT
     - Output must end with a semicolon
 
+    Data type rules:
+    - Text columns (including GUIDs/UUIDs) MUST be quoted with single quotes
+    - Numeric columns (int, numeric, float) should NOT be quoted
+    - When comparing text fields, always use quoted strings like 'value'
+
     Allowed statements:
     - SELECT only
 
@@ -23,24 +30,6 @@ def generate_sql(llm:LLM,query: str) -> str:
     - Natural language
 
     If you violate any rule, the response is invalid.
-    """
-
-
-    SCHEMA = """
-    tables:
-
-    users(
-    id integer,
-    email text,
-    created_at timestamp
-    )
-
-    orders(
-    id integer,
-    user_id integer,
-    amount numeric,
-    created_at timestamp
-    )
     """
 
     full_prompt = f"""

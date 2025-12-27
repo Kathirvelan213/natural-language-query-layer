@@ -29,5 +29,4 @@ class GroqLLM:
             top_p=self.top_p,
             stream=False,
         )
-
         return completion.choices[0].message.content
