@@ -1,0 +1,48 @@
+.promptFieldPanel {
+    width: 800px;
+    min-height: 50px;
+    border-radius: 15px;
+    background-color: #0f0f0f;
+    align-items: center;
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* overflow: auto; */
+    flex-direction: column;
+}
+
+
+.promptFieldInput {
+    flex: 1;
+    padding: 10px;
+    width : 800px;
+    field-sizing: content;
+    min-height: 1lh;
+    max-height: 300px;
+    resize: none;
+    background-color: transparent;
+    outline: none;
+}
+
+
+.promptFieldButton {
+    justify-items: center;
+    background-color: transparent;
+    margin-right: 10px;
+    justify-self: end;
+}
+
+.otherSettingsPanel{
+    width:100%;
+    min-height: 50px;
+    display: flex;
+    flex:1;
+    align-items: center;
+     font-size: 1rem;
+  font-weight: 500; 
+  color: #b8b8b8;
+  letter-spacing: 0.02em;
+  margin-top: 0.25rem;
+  opacity: 0.9;
+    
+}

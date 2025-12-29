@@ -1,0 +1,33 @@
+.newQueryPage{
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    width: 800px;
+    justify-content: center;
+}
+.logo-container-large{
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.logo-text-large{
+    background: linear-gradient(135deg, #667eea 0%, #f093fb 50%, #f5576c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+    font-size: 2.3rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #b8b8b8;
+  letter-spacing: 0.02em;
+  margin-top: 0.25rem;
+  opacity: 0.9;
+}
