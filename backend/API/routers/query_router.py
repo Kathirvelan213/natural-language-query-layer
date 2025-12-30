@@ -14,11 +14,12 @@ def connect_db(request: Request):
     
 @router.post("/query", response_model=NLQueryResponse)
 def nl_to_sql(request: Request, req: NLQueryRequest):
+    print(req.prompt)
     db=get_db_from_session(request)
-    output = perform_query(db, req.question)
+    output = perform_query(db, req.prompt)
 
     return {
-        "question": req.question,
-        "sql": output["sql"],
-        "results": output["results"]
+        "prompt": req.prompt,
+        "sqlQuery": output["sqlQuery"],
+        "result": output["result"]
     }

@@ -12,6 +12,6 @@ def perform_query(db: DB, query: str) -> dict:
     print("Generated SQL:", generatedSql)
     results = execute_query(db, generatedSql)
     return {
-        "sql": generatedSql,
-        "results": results
+        "sqlQuery": generatedSql,
+        "result": results
     }

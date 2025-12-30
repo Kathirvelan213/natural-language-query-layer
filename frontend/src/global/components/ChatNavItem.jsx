@@ -1,12 +1,12 @@
 import "../styles/sidebar.css";
+import {Link} from "react-router-dom"
 
-export function ChatNavItem({ conversationTitle, isSelected, onClick }) {
+export function ChatNavItem({ chat, isSelected, onClick }) {
   return (
-    <a
+    <Link to={`/chat/${chat[0]}`}
       className={`chat-nav-item ${isSelected ? "selected" : ""}`}    
-      onClick={onClick}
     >
-      {conversationTitle || "Untitled Chat"}
-    </a>
+      {chat[1] || "Untitled Chat"}
+    </Link>
   );
 }

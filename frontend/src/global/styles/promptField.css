@@ -7,14 +7,13 @@
     display: flex;
     padding-left: 10px;
     padding-right: 10px;
-    /* overflow: auto; */
     flex-direction: column;
 }
 
 
 .promptFieldInput {
     flex: 1;
-    padding: 10px;
+    padding: 15px;
     width : 800px;
     field-sizing: content;
     min-height: 1lh;
