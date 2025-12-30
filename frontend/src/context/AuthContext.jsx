@@ -2,6 +2,9 @@ import { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
+const API_URL = import.meta.env.VITE_API_URL;
+const AUTH_URL = import.meta.env.VITE_AUTH_URL;
+
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -14,7 +17,7 @@ export function AuthProvider({ children }) {
 
   const checkAuth = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/auth/user", {
+      const response = await axios.get(`${API_URL}auth/user`, {
         withCredentials: true,
       });
       setUser(response.data);
@@ -26,13 +29,13 @@ export function AuthProvider({ children }) {
   };
 
   const login = () => {
-    window.location.href = "http://localhost:8000/auth/login";
+    window.location.href = `${AUTH_URL}auth/login`;
   };
 
   const logout = async () => {
     try {
       await axios.post(
-        "http://localhost:8000/auth/logout",
+        `${API_URL}auth/logout`,
         {},
         {
           withCredentials: true,

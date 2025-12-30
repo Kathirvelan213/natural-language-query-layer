@@ -10,9 +10,12 @@ load_dotenv()
 
 app=FastAPI(title="Natural Language Query Layer API",version="1.0.0")
 
+# Get allowed origins from environment or use default
+allowed_origins = os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -21,6 +24,8 @@ app.add_middleware(
 app.add_middleware(
     SessionMiddleware,
     secret_key=os.getenv("SECRET_KEY", "super-secret-key"),
+    same_site="lax",
+    https_only=False,
 )
 app.include_router(api_router, prefix="/api")
 app.include_router(auth_router, prefix="/auth")

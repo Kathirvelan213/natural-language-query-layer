@@ -1,4 +1,4 @@
-import "../styles/sidebar.css";
+import "../styles/sideBar.css";
 import {Link} from "react-router-dom"
 
 export function ChatNavItem({ chat, isSelected, onClick }) {

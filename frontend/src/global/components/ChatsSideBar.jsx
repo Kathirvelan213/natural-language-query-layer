@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getChatList } from "../../apiConsumer/chatsAPI";
-import "../styles/sidebar.css";
+import "../styles/sideBar.css";
 import { ChatNavItem } from "./ChatNavItem";
 import { ChatSideBarHeading } from "./ChatSideBarHeading";
 import {Link} from "react-router-dom"

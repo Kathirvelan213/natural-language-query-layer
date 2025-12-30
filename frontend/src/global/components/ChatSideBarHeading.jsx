@@ -1,4 +1,4 @@
-import '../styles/sidebar.css'
+import '../styles/sideBar.css'
 
 export function ChatSideBarHeading({heading}){
     return(
