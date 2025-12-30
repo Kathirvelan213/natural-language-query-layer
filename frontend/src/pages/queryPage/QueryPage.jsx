@@ -4,6 +4,7 @@ import { PromptField } from "../../global/components/PromptField";
 import { useParams } from "react-router-dom";
 import { getChatConversation } from "../../apiConsumer/chatsAPI";
 import { performQueryAPI } from "../../apiConsumer/queryAPI";
+import { SqlBlock } from "./components/SqlBlock";
 
 export function QueryPage() {
   const { id } = useParams();
@@ -24,53 +25,58 @@ export function QueryPage() {
 
   async function handleNewQuery(prompt) {
     const response = await performQueryAPI(prompt);
-    console.log(response.data);
     addQuery(response.data);
   }
 
   return (
     <div className="queryPage">
-      <div className="chatContent">
-        {content.map((query, idx) => {
-          const records = query.result || [];
-          const columns = records.length > 0 ? Object.keys(records[0]) : [];
+      
+      <div className="scrollArea">
+        <div className="chatContent">
+          <div className="h-[50px]"></div>
+          {content.map((query, idx) => {
+            const records = query.result || [];
+            const columns = records.length > 0 ? Object.keys(records[0]) : [];
 
-          return (
-            <div key={idx} className="query-block">
-              <div className="prompt">{query.prompt}</div>
-              <div className="sql">{query.sqlQuery}</div>
-              <div className="result">
-                {records.length === 0 ? (
-                  <p>No results</p>
-                ) : (
-                  <table className="results-table">
-                    <thead>
-                      <tr>
-                        {columns.map((col) => (
-                          <th key={col}>{col}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {records.map((record, i) => (
-                        <tr key={i}>
+            return (
+              <div key={idx} className="query-block">
+                <div className="prompt">{query.prompt}</div>
+                <div className="sql">
+                  <SqlBlock sql={query.sqlQuery} />
+                </div>
+                <div className="result">
+                  {records.length === 0 ? (
+                    <p>No results</p>
+                  ) : (
+                    <table className="results-table">
+                      <thead>
+                        <tr>
                           {columns.map((col) => (
-                            <td key={col}>{String(record[col] ?? "")}</td>
+                            <th key={col}>{col}</th>
                           ))}
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                )}
+                      </thead>
+                      <tbody>
+                        {records.map((record, i) => (
+                          <tr key={i}>
+                            {columns.map((col) => (
+                              <td key={col}>{String(record[col] ?? "")}</td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
+                </div>
               </div>
-            </div>
-          );
-        })}
-        <div ref={bottomRef} />
-      </div>
-      <div className="prompt-wrapper">
-        <PromptField onSubmit={handleNewQuery} />
-      </div>
+            );
+          })}
+          <div ref={bottomRef} />
+        </div>
     </div>
+        <div className="prompt-wrapper">
+          <PromptField onSubmit={handleNewQuery} />
+        </div>
+      </div>
   );
 }

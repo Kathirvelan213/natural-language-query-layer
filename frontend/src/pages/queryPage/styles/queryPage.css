@@ -8,7 +8,10 @@ body {
     flex-direction: column;
     flex: 1;
     height: 100vh;
-    max-width: 800px;
+    width:100%;
+    align-items: center;
+    justify-items: center;
+    /* max-width: 800px; */
 }
 
 .prompt-wrapper {
@@ -17,34 +20,46 @@ body {
     margin-bottom: 30px;
 }
 
-.chatContent {
+.scrollArea {
     /* padding:20px; */
     flex: 1;
     overflow-y: auto;
+    height: 100vh;
+    width: 100%;
+    justify-items: center;
     /* padding: 10px; */
+}
+
+.chatContent{
+    width: 800px;
+    max-width: 800px;
+    /* justify-items: center; */
 }
 
 .prompt{
     justify-self: right;
     background-color: #1a1a1a;
     padding:7px;
-    border-radius: 20px;
+    border-radius: 12px;
+    margin-bottom: 5px;
 }
 
 .sql{
     justify-self: left;
     background-color: #1a1a1a;
     padding:7px;
-    border-radius: 20px;
+    border-radius: 12px;
+    margin-bottom: 5px;
 }
 
 .result{
     justify-self: left;
     background-color: #1a1a1a;
     padding:7px;
-    border-radius: 20px;
+    border-radius: 12px;
     max-width: 100%;
     overflow-x: auto;
+    margin-bottom: 5px;
 }
 
 .query-block {

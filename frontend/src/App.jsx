@@ -3,7 +3,7 @@ import "./App.css";
 import { QueryPage } from "./pages/queryPage/QueryPage";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./global/Layout";
-import { NewQueryPage } from "./pages/newQueryPage/newQueryPage";
+import { NewQueryPage } from "./pages/newQueryPage/NewQueryPage";
 
 function App() {
   return (

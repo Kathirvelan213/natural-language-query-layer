@@ -1,0 +1,30 @@
+.login-button {
+  padding: 10px 20px;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+.login-button:hover {
+  background: #f0f0f0;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+.login-button:active {
+  transform: scale(0.98);
+}
+
+.login-button.logout {
+  background: #ff4444;
+  color: #fff;
+}
+
+.login-button.logout:hover {
+  background: #cc3333;
+}

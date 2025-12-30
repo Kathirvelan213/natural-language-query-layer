@@ -9,27 +9,28 @@ def generate_sql(llm:LLM,schema: str, query: str) -> str:
     You MUST follow these rules:
     - Output ONLY raw SQL
     - Do NOT use markdown
-    - Do NOT use code blocks
     - Do NOT include backticks
-    - Do NOT include explanations
-    - Do NOT include comments
-    - Output must start directly with SELECT
+    - Do NOT include explanations or comments
+    - Output must start with SELECT
     - Output must end with a semicolon
 
-    Data type rules:
-    - Text columns (including GUIDs/UUIDs) MUST be quoted with single quotes
-    - Numeric columns (int, numeric, float) should NOT be quoted
-    - When comparing text fields, always use quoted strings like 'value'
+    Formatting rules:
+    - Format SQL across multiple lines
+    - Place SELECT, FROM, WHERE, GROUP BY, ORDER BY on their own lines
+    - Indent selected columns and conditions cleanly
+    - Use standard SQL formatting conventions
 
-    Allowed statements:
+    Data rules:
+    - Text values MUST be wrapped in single quotes
+    - Numeric values must NOT be quoted
+
+    Allowed:
     - SELECT only
 
     Forbidden:
     - INSERT, UPDATE, DELETE, DROP, ALTER, CREATE
     - Markdown formatting
     - Natural language
-
-    If you violate any rule, the response is invalid.
     """
 
     full_prompt = f"""

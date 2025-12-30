@@ -6,6 +6,7 @@ import { ChatSideBarHeading } from "./ChatSideBarHeading";
 import {Link} from "react-router-dom"
 import { FaArrowRight } from "react-icons/fa";
 import logoSrc from "../../assets/logo2.png"
+import { LoginButton } from "./LoginButton";
 
 export function ChatSideBar({ conversations, selectedConv, onSelectConv, onNewConv }) {
   const [chatList, setChatList] = useState([]);
@@ -33,7 +34,11 @@ export function ChatSideBar({ conversations, selectedConv, onSelectConv, onNewCo
         </div>
       </nav>
       <hr className="w-[95%] justify-self-center border-white/5 self-end" />
-      <div className="h-[60px]"></div>
+      {/* <div className="h-[60px]"></div> */}
+      <div className="query-header">
+        <h2>Shard</h2>
+        <LoginButton />
+      </div>
     </aside>
   );
 }
