@@ -6,5 +6,4 @@ redis_client = redis.Redis(
     decode_responses=True
 )
 
-redis_client.set("hello", "world")
-print(redis_client.get("hello"))  # world
+

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getChatList } from "../../apiConsumer/chatsAPI";
+import { getAllChats } from "../../apiConsumer/chatsAPI";
 import "../styles/sideBar.css";
 import { ChatNavItem } from "./ChatNavItem";
 import { ChatSideBarHeading } from "./ChatSideBarHeading";
@@ -8,11 +8,8 @@ import { FaArrowRight } from "react-icons/fa";
 import logoSrc from "../../assets/logo2.png"
 import { LoginButton } from "./LoginButton";
 
-export function ChatSideBar({ conversations, selectedConv, onSelectConv, onNewConv }) {
-  const [chatList, setChatList] = useState([]);
-  useEffect(() => {
-    setChatList(getChatList());
-  }, []);
+export function ChatSideBar({chatList,setChatList}) {
+  
   return (
     <aside className="sidebar">
       <div className="logo-container">
@@ -21,7 +18,7 @@ export function ChatSideBar({ conversations, selectedConv, onSelectConv, onNewCo
       </div>
       <hr className="w-[95%] justify-self-center border-white/5" />
       <div className="h-[300px]"></div>
-      <Link to="/"className={`chat-nav-item `}>
+      <Link to="/" className={`chat-nav-item `}>
         {"New Chat"}
         <FaArrowRight/>
       </Link>
@@ -29,14 +26,13 @@ export function ChatSideBar({ conversations, selectedConv, onSelectConv, onNewCo
       <nav className="min-h-0 flex flex-col flex-1">
         <div className="chats-list">
           {chatList.map((chat) => (
-            <ChatNavItem chat={chat} key={chat[0]} />
+            <ChatNavItem chat={chat} key={chat.chat_id} />
           ))}
         </div>
       </nav>
       <hr className="w-[95%] justify-self-center border-white/5 self-end" />
       {/* <div className="h-[60px]"></div> */}
       <div className="query-header">
-        <h2>Shard</h2>
         <LoginButton />
       </div>
     </aside>

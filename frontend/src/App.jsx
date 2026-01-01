@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { QueryPage } from "./pages/queryPage/QueryPage";
 import { Route, Routes } from "react-router-dom";
-import { Layout } from "./global/Layout";
+import { Layout } from "./global/ChatLayout";
 import { NewQueryPage } from "./pages/newQueryPage/NewQueryPage";
 
 function App() {

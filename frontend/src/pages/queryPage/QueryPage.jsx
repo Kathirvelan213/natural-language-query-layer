@@ -2,17 +2,26 @@ import { useEffect, useRef, useState } from "react";
 import "./styles/queryPage.css";
 import { PromptField } from "../../global/components/PromptField";
 import { useParams } from "react-router-dom";
-import { getChatConversation } from "../../apiConsumer/chatsAPI";
+import { getChat } from "../../apiConsumer/chatsAPI";
 import { performQueryAPI } from "../../apiConsumer/queryAPI";
 import { SqlBlock } from "./components/SqlBlock";
 
 export function QueryPage() {
   const { id } = useParams();
+  const [chatName,setChatName]=useState();
   const [content, setContent] = useState([]);
   const bottomRef = useRef(null);
 
   useEffect(() => {
-    setContent(getChatConversation(id));
+    const fetchChatContent = async () => {
+          const ChatContent = await getChat(id);
+
+          console.log("hi");
+          console.log(ChatContent.data);
+          setChatName(ChatContent.data.chatName)
+          setContent(ChatContent.data.queryResponses);
+        };
+        fetchChatContent();
   }, [id]);
 
   useEffect(() => {
@@ -24,7 +33,7 @@ export function QueryPage() {
   }
 
   async function handleNewQuery(prompt) {
-    const response = await performQueryAPI(prompt);
+    const response = await performQueryAPI({"chatId":id,"prompt":prompt});
     addQuery(response.data);
   }
 

@@ -5,7 +5,7 @@ import { FaPaperPlane } from "react-icons/fa";
 export function PromptField({ onSubmit }) {
   const [prompt, setPrompt] = useState("");
   function handleSubmit() {
-    onSubmit({ prompt: prompt });
+    onSubmit(prompt);
     setPrompt("");
   }
   return (

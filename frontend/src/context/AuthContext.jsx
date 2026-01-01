@@ -22,7 +22,8 @@ export function AuthProvider({ children }) {
       });
       setUser(response.data);
     } catch (err) {
-      setUser(null);
+      // If endpoint fails, set as anonymous user
+      setUser({ is_authenticated: false });
     } finally {
       setLoading(false);
     }
@@ -41,7 +42,8 @@ export function AuthProvider({ children }) {
           withCredentials: true,
         }
       );
-      setUser(null);
+      // Reload page to clear all state and start fresh
+      window.location.href = '/';
     } catch (err) {
       console.error("Logout failed", err);
     }

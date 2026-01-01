@@ -67,7 +67,20 @@ async def callback(request: Request, code: str = None, state: str = None):
     flow.redirect_uri = GOOGLE_REDIRECT_URI
     credentials = flow.fetch_token(code=code)
     
+    # Fetch user info from Google
+    import requests
+    user_info_response = requests.get(
+        'https://www.googleapis.com/oauth2/v2/userinfo',
+        headers={'Authorization': f"Bearer {credentials['access_token']}"}
+    )
+    user_info = user_info_response.json()
+    
     # Store user info in session
+    request.session['user_id'] = user_info.get('id')
+    request.session['email'] = user_info.get('email')
+    request.session['name'] = user_info.get('name')
+    request.session['picture'] = user_info.get('picture')
+    request.session['is_authenticated'] = True
     request.session['credentials'] = {
         'access_token': credentials['access_token'],
         'refresh_token': credentials.get('refresh_token'),
@@ -80,16 +93,32 @@ async def callback(request: Request, code: str = None, state: str = None):
 @router.get("/user")
 async def get_user(request: Request):
     """Get current user info"""
-    credentials = request.session.get('credentials')
-    if not credentials:
-        raise HTTPException(status_code=401, detail="Not authenticated")
+    user_id = request.session.get('user_id')
+    is_authenticated = request.session.get('is_authenticated', False)
     
-    # In a real app, fetch user info from Google and database
-    return {"authenticated": True, "access_token": credentials.get('access_token')}
+    if not user_id or not is_authenticated:
+        # Return anonymous user status
+        return {
+            "is_authenticated": False,
+            "user_id": user_id if user_id else None
+        }
+    
+    # Return authenticated user info
+    return {
+        "is_authenticated": True,
+        "user_id": user_id,
+        "email": request.session.get('email'),
+        "name": request.session.get('name'),
+        "picture": request.session.get('picture')
+    }
 
 @router.post("/logout")
 async def logout(request: Request):
     """Logout user"""
+    # Clear existing session
     request.session.clear()
-    return {"message": "Logged out successfully"}
+    
+    return {
+        "message": "Logged out successfully"
+    }
     

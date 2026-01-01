@@ -2,14 +2,17 @@ import { useAuth } from "../../context/AuthContext";
 import "./styles/loginButton.css";
 
 export function LoginButton() {
-  const { user, login, logout } = useAuth();
+  const { user, loading, login, logout } = useAuth();
 
   const handleLogin = () => {
-    console.log("Login clicked, redirecting to http://localhost:8000/auth/login");
     login();
   };
 
-  if (user) {
+  if (loading) {
+    return null;
+  }
+
+  if (user?.is_authenticated) {
     return (
       <button className="login-button logout" onClick={logout}>
         Logout
