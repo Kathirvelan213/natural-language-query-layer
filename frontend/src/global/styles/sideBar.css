@@ -64,3 +64,21 @@
     font-weight: bold;
     /* font-weight: 600; */
 }
+
+.new-chat{
+    justify-content: space-between;
+    display: flex;
+    padding: 7px;
+    padding-left: 12px;
+    margin: 2px;
+    border-radius: 10px;
+    color: white;
+    text-align: left;
+    font-size: small;
+    align-items: center;
+}
+
+.new-chat:hover{
+    background: #1a1a1a;
+    cursor: pointer;
+}

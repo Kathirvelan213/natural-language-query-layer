@@ -1,5 +1,5 @@
 import { useAuth } from "../../context/AuthContext";
-import "./styles/loginButton.css";
+import "../styles/loginButton.css";
 
 export function LoginButton() {
   const { user, loading, login, logout } = useAuth();

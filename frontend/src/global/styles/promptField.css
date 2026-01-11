@@ -1,20 +1,22 @@
 .promptFieldPanel {
     width: 800px;
-    min-height: 50px;
+    min-height: 120px; /* taller to accommodate popover */
     border-radius: 15px;
     background-color: #0f0f0f;
     align-items: center;
     display: flex;
     padding-left: 10px;
     padding-right: 10px;
+    padding-top: 10px;
     flex-direction: column;
 }
+
 
 
 .promptFieldInput {
     flex: 1;
     padding: 15px;
-    width : 800px;
+    width: 800px;
     field-sizing: content;
     min-height: 1lh;
     max-height: 300px;
@@ -27,21 +29,119 @@
 .promptFieldButton {
     justify-items: center;
     background-color: transparent;
-    margin-right: 10px;
+    margin-right: 15px;
     justify-self: end;
+    align-self: center;
+    margin-bottom: 15px;
 }
 
-.otherSettingsPanel{
-    width:100%;
+.otherSettingsPanel {
+    width: 100%;
     min-height: 50px;
     display: flex;
-    flex:1;
+    flex: 1;
+    align-items: start;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #b8b8b8;
+    letter-spacing: 0.02em;
+    opacity: 0.9;
+    justify-content: space-between;
+    margin-top: 2px;
+    /* align-items: ce; */
+
+}
+
+.connectButton{
+    display: flex;
+    height: 40px;
+    /* outline-color: white; */
+    border-radius: 25px;
     align-items: center;
-     font-size: 1rem;
-  font-weight: 500; 
-  color: #b8b8b8;
-  letter-spacing: 0.02em;
-  margin-top: 0.25rem;
-  opacity: 0.9;
-    
+    outline: 1px solid rgba(255, 255, 255, 0.075) ;
+    padding: 15px;
+    padding-bottom: 17px;
+    gap:5px;
+    padding-right: 20px;
+}
+
+.connectButton:hover{
+    background-color: #161616;
+}
+
+.connectPopover {
+    width: 100%;
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    padding: 0 14px;
+    margin-top: 10px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-6px);
+    transition: max-height 220ms ease, opacity 160ms ease, transform 220ms ease, padding 200ms ease;
+    pointer-events: none;
+}
+
+.connectPopover.open {
+    max-height: 520px;
+    opacity: 1;
+    transform: translateY(0);
+    padding: 14px;
+    pointer-events: auto;
+    margin-bottom: 10px;
+}
+
+.connectForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.connectRow {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.connectRow label {
+    color: #b8b8b8;
+    font-size: 0.85rem;
+    letter-spacing: 0.01em;
+}
+
+.connectRow input {
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 8px 10px;
+    color: #f3f3f3;
+    font-size: 0.95rem;
+}
+
+.connectRow input:focus {
+    outline: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.connectActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.connectActions button {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #161616;
+    color: #f3f3f3;
+    font-size: 0.9rem;
+}
+
+.connectActions button[type="submit"] {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border: none;
 }
